@@ -1,0 +1,47 @@
+#https://springframework.guru/log4j-2-configuration-using-yaml/
+#https://logging.apache.org/log4j/2.x/manual/configuration.html
+Configuration:
+  status: INFO
+  Properties:
+    Property:
+      - name: "Pattern-For-File"
+        value: "%d{yyyy-MM-dd HH:mm:ss.SSS} %level [%t] [%c]%n%msg%n"
+      - name: "Pattern-For-Console"
+        value: "%d{yyyy-MM-dd HH:mm:ss.SSS} %highlight{%level} [%t] %highlight{%c{1.}.%M(%L)}: %n%msg%n"
+
+  Appenders:
+    Console:
+      name: consoleAppender
+      target: SYSTEM_OUT
+      PatternLayout:
+        Pattern: ${Pattern-For-Console}
+    File:
+      name: fileAppender
+      fileName: "target/tests.log"
+      PatternLayout:
+        Pattern: ${Pattern-For-File}
+
+  Loggers:
+    logger:
+      -
+        name: consoleLoggerq
+        level: INFO
+        additivity: true
+        AppenderRef:
+          ref: consoleAppender
+      -
+        name: fileLogger
+        level: INFO
+        additivity: false
+        AppenderRef:
+          ref: fileAppender
+
+    Root:
+      level: INFO
+      AppenderRef:
+#        for displaying type info in console
+        - ref: consoleAppender
+          level: INFO
+#        for displaying type info in logfile
+        - ref: fileAppender
+          level: INFO

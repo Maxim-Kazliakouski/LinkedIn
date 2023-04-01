@@ -1,6 +1,7 @@
 package tests.base;
 
 import com.github.javafaker.Faker;
+import config.TestPropertyReader;
 import io.github.bonigarcia.wdm.WebDriverManager;
 import org.apache.commons.io.FileUtils;
 import org.openqa.selenium.OutputType;
@@ -53,9 +54,13 @@ public abstract class BaseWithStepsTest {
             ChromeOptions options = new ChromeOptions();
             options.addArguments("window-size=1920x1080");
             options.addArguments("--disable-notifications");
+            options.addArguments("--remote-allow-origins=*");
             options.setHeadless(headlessMode.equals("true"));
             browser = new ChromeDriver(options);
             browser.manage().deleteAllCookies();
+//            username = TestPropertyReader.getProperty("username");
+//            password = TestPropertyReader.getProperty("password");
+//            properties for getting data from command line
             username = System.getProperty("usernameChrome");
             password = System.getProperty("passwordChrome");
         } else if (browserType.equals("firefox")) {
@@ -63,12 +68,15 @@ public abstract class BaseWithStepsTest {
             FirefoxOptions options = new FirefoxOptions();
             options.addArguments("window-size=1920х1080");
             options.addArguments("--disable-notifications");
+//            options.addArguments("--remote-allow-origins=*");
             options.addPreference("dom.webnotifications.enabled", false);
             options.setHeadless(headlessMode.equals("true"));
             browser = new FirefoxDriver(options);
             browser.manage().deleteAllCookies();
-            username = System.getProperty("usernameFirefox");
-            password = System.getProperty("passwordFirefox");
+            username = TestPropertyReader.getProperty("username");
+            password = TestPropertyReader.getProperty("password");
+//            username = System.getProperty("usernameFirefox");
+//            password = System.getProperty("passwordFirefox");
         }
         // для связки с скриншотами в TestListener
         testContext.setAttribute("browser", browser);

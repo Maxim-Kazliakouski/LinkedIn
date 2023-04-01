@@ -15,7 +15,7 @@ public class CreatedConnectionsTest extends BaseWithStepsTest {
                 .goToContactsPage();
         contactsPageSteps.createConnection(
                 "Automation", "automation", "AQA", "aqa",
-                "qa", "QA", "Qa",
+                "qa", "QA", "Qa", "Test Engineer", "PM",
                 "hr", "HR", "resource", "Resource",
                 "Recruiter", "recruiter"
         );

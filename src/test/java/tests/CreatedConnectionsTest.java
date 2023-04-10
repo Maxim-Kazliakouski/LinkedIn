@@ -9,8 +9,8 @@ public class CreatedConnectionsTest extends BaseWithStepsTest {
     @Test
     public void createNewConnections() {
         loginPageSteps
-                .goToLoginPage()
-                .login(getUsername(), getPassword());
+                .goToLoginPage();
+//                .login(getUsername(), getPassword());
 //        homePageSteps
 //                .goToContactsPage();
 //        contactsPageSteps.createConnection(

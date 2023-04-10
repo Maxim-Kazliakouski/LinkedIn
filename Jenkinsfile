@@ -44,18 +44,10 @@ pipeline {
 
 
                             // Run Maven on a Unix agent.
-                            bat 'mvn clean -DusernameChrome="$USERNAME" -DpasswordChrome="$PASSWORD" test'
-                            //bat 'mvn clean -DusernameChrome="valyuk.natali@gmail.com" -DpasswordChrome="valyuk.natali96" test'
-                            //-P UI -Dbrowser=$BROWSER \
-                            //-DbrowserVersion=$VERSION \
-                            //-DvideoTestRecord=$VIDEO_TEST_RECORD \
-                            //-Dheadless=$HEADLESS \
-                            //-Dqase.username=$USERNAME \
-                            //-Dqase.password=$PASSWORD_CREDENTIALS \
-                            //-Dtoken=$TOKEN_CREDENTIALS \
-                            //-DtestRun=$TESTRUN \
-                            //-DcodeProject=$CODEPROJECT
-
+                            bat "mvn clean \
+                             -DusernameChrome=$USERNAME \
+                             -DpasswordChrome=$PASSWORD \
+                             test"
                     } catch (Exception error)
                     {
                         unstable('Testing failed')

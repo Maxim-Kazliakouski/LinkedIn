@@ -55,6 +55,14 @@ pipeline {
             // To run Maven on a Windows agent, use
             // bat "mvn -Dmaven.test.failure.ignore=true clean package"
 
+            post{
+                    always{
+                        emailext to: "maxim.kazliakouski@gmail.com",
+                        subject: "jenkins build:${currentBuild.currentResult}: ${env.JOB_NAME}",
+                        body: "${currentBuild.currentResult}: Job ${env.JOB_NAME}\nMore Info can be found here: ${env.BUILD_URL}"
+                    }
+                }
+
             post {
                 // If Maven was able to run the tests, even if some of the test
                 // failed, record the test results and archive the jar file.

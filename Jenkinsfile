@@ -44,7 +44,7 @@ pipeline {
 
 
                             // Run Maven on a Unix agent.
-                            bat 'mvn clean -DusernameChrome="${USERNAME}" -DpasswordChrome="${PASSWORD}" test'
+                            bat 'mvn clean -DusernameChrome=${USERNAME} -DpasswordChrome=${PASSWORD} test'
                             //bat 'mvn clean -DusernameChrome="valyuk.natali@gmail.com" -DpasswordChrome="valyuk.natali96" test'
                             //-P UI -Dbrowser=$BROWSER \
                             //-DbrowserVersion=$VERSION \

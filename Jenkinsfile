@@ -44,10 +44,7 @@ pipeline {
 
 
                             // Run Maven on a Unix agent.
-                            bat "mvn clean \
-                             -DusernameChrome=$USERNAME \
-                             -DpasswordChrome=$PASSWORD \
-                             test"
+                            bat "mvn clean -DusernameChrome=$USERNAME -DpasswordChrome=$PASSWORD test"
                     } catch (Exception error)
                     {
                         unstable('Testing failed')

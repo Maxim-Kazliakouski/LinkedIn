@@ -38,7 +38,7 @@ public class ContactsPage extends BasePage {
     }
 
     public String getWorkStatus(String userName) {
-        return browser.findElement(By.xpath(format("//span[text()='%s']//..//span[@class='discover-person-card__name t-16 t-black t-bold']//..//img", userName))).getAttribute("alt");
+        return browser.findElement(By.xpath(format("//span[text()='%s']//..//span[@class='discover-person-card__name t-16 t-black t-bold']//..//..//img", userName))).getAttribute("alt");
     }
 
     public By getButtonBySpecialization(String spec) {

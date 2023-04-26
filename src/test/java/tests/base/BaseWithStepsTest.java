@@ -55,7 +55,7 @@ public abstract class BaseWithStepsTest {
             options.addArguments("window-size=1920x1080");
             options.addArguments("--disable-notifications");
             options.addArguments("--remote-allow-origins=*");
-            options.setHeadless(headlessMode.equals("true"));
+            options.setHeadless(headlessMode.equals("false"));
             browser = new ChromeDriver(options);
             browser.manage().deleteAllCookies();
 //            username = TestPropertyReader.getProperty("username");

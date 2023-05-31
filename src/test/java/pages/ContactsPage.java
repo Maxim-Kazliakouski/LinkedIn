@@ -37,6 +37,10 @@ public class ContactsPage extends BasePage {
                 "//span[text()='%s']//..//span[@class='discover-person-card__name t-16 t-black t-bold']", spec)));
     }
 
+    public String getWorkStatus(String userName) {
+        return browser.findElement(By.xpath(format("//span[text()='%s']//..//span[@class='discover-person-card__name t-16 t-black t-bold']//..//..//img", userName))).getAttribute("alt");
+    }
+
     public By getButtonBySpecialization(String spec) {
         return By.xpath(format("//span[@class='discover-person-card__occupation t-14 t-black--light t-normal'][text()='%s']//..//..//..//footer//button", spec));
     }
@@ -65,9 +69,11 @@ public class ContactsPage extends BasePage {
             for (String eachUniqueContact : desiredContacts) {
                 if (specialization.contains(eachUniqueContact)
                         && !specialization.contains("Junior")
-                        && !specialization.contains("junior")) {
+                        && !specialization.contains("junior")
+                        && !getWorkStatus(specialization).contains("is open to work")) {
                     contactsForClick.add(specialization);
                     try {
+//                        log.info(getWorkStatus(getUserName(specialization).getText()));
                         clickJS(getButtonBySpecialization(specialization));
                         waitForElementClickable(pendingButton(specialization));
                         log.info(getUserName(specialization).getText() + " --> " + specialization + " -- has been added");

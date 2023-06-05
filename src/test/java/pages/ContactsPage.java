@@ -47,8 +47,8 @@ public class ContactsPage extends BasePage {
             return false;
         }
         catch (Exception er){
-            getWorkStatus(userName);
             System.out.println("!!!NOT GHOST PERSON --> CAN BE ADDED!!!");
+            getWorkStatus(userName);
             return true;
         }
     }

@@ -41,6 +41,18 @@ public class ContactsPage extends BasePage {
         return browser.findElement(By.xpath(format("//span[text()='%s']//..//span[@class='discover-person-card__name t-16 t-black t-bold']//..//..//img", userName))).getAttribute("alt");
     }
 
+    public boolean ghostPerson(String userName){
+        try {
+            By.xpath(format("//span[text()='%s']//..//span[@class='discover-person-card__name t-16 t-black t-bold']//..//div[contains(@class,'ghost-entity')]", userName));
+            System.out.println("!!!GHOST PERSON!!!");
+            return false;
+        }
+        catch (Exception er){
+            getWorkStatus(userName);
+            return true;
+        }
+    }
+
     public By getButtonBySpecialization(String spec) {
         return By.xpath(format("//span[@class='discover-person-card__occupation t-14 t-black--light t-normal'][text()='%s']//..//..//..//footer//button", spec));
     }
@@ -70,7 +82,9 @@ public class ContactsPage extends BasePage {
                 if (specialization.contains(eachUniqueContact)
                         && !specialization.contains("Junior")
                         && !specialization.contains("junior")
-                        && !getWorkStatus(specialization).contains("is open to work")) {
+                        && !ghostPerson(specialization))
+//                        && !getWorkStatus(specialization).contains("is open to work")) {
+                {
                     contactsForClick.add(specialization);
                     try {
 //                        log.info(getWorkStatus(getUserName(specialization).getText()));

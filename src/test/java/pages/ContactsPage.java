@@ -81,8 +81,7 @@ public class ContactsPage extends BasePage {
                 if (specialization.contains(eachUniqueContact)
                         && !specialization.contains("Junior")
                         && !specialization.contains("junior")
-                        && ghostPerson(specialization))
-//                        && !getWorkStatus(specialization).contains("is open to work"))
+                        && !getWorkStatus(specialization).contains("is open to work"))
                     contactsForClick.add(specialization);
                 try {
 //                        log.info(getWorkStatus(getUserName(specialization).getText()));

@@ -44,11 +44,11 @@ public class ContactsPage extends BasePage {
     public boolean ghostPerson(String userName){
         try {
             By.xpath(format("//span[text()='%s']//..//span[@class='discover-person-card__name t-16 t-black t-bold']//..//div[contains(@class,'ghost-entity')]", userName));
-            System.out.println("!!!GHOST PERSON!!!");
             return false;
         }
         catch (Exception er){
             getWorkStatus(userName);
+            System.out.println("!!!NOT GHOST PERSON --> CAN BE ADDED!!!");
             return true;
         }
     }

@@ -47,6 +47,7 @@ public class ContactsPage extends BasePage {
             getWorkStatus(userName);
             return true;
         } catch (Exception er) {
+            System.out.println("---> GHOST PERSON <--- CAN'T BE ADDED!!!");
             By.xpath(format("//span[text()='%s']//..//span[@class='discover-person-card__name t-16 t-black t-bold']//..//div[contains(@class,'ghost-entity')]", userName));
             return false;
         }

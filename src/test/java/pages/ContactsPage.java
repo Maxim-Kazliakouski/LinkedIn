@@ -82,7 +82,7 @@ public class ContactsPage extends BasePage {
                 if (specialization.contains(eachUniqueContact)
                         && !specialization.contains("Junior")
                         && !specialization.contains("junior")
-                        && !ghostPerson(specialization))
+                        && ghostPerson(specialization))
 //                        && !getWorkStatus(specialization).contains("is open to work")) {
                 {
                     contactsForClick.add(specialization);

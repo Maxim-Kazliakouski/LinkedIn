@@ -41,15 +41,14 @@ public class ContactsPage extends BasePage {
         return browser.findElement(By.xpath(format("//span[text()='%s']//..//span[@class='discover-person-card__name t-16 t-black t-bold']//..//..//img", userName))).getAttribute("alt");
     }
 
-    public boolean ghostPerson(String userName){
+    public boolean ghostPerson(String userName) {
         try {
-            By.xpath(format("//span[text()='%s']//..//span[@class='discover-person-card__name t-16 t-black t-bold']//..//div[contains(@class,'ghost-entity')]", userName));
-            return false;
-        }
-        catch (Exception er){
             System.out.println("!!!NOT GHOST PERSON --> CAN BE ADDED!!!");
             getWorkStatus(userName);
             return true;
+        } catch (Exception er) {
+            By.xpath(format("//span[text()='%s']//..//span[@class='discover-person-card__name t-16 t-black t-bold']//..//div[contains(@class,'ghost-entity')]", userName));
+            return false;
         }
     }
 
@@ -83,21 +82,19 @@ public class ContactsPage extends BasePage {
                         && !specialization.contains("Junior")
                         && !specialization.contains("junior")
                         && ghostPerson(specialization))
-//                        && !getWorkStatus(specialization).contains("is open to work")) {
-                {
+//                        && !getWorkStatus(specialization).contains("is open to work"))
                     contactsForClick.add(specialization);
-                    try {
+                try {
 //                        log.info(getWorkStatus(getUserName(specialization).getText()));
-                        clickJS(getButtonBySpecialization(specialization));
-                        waitForElementClickable(pendingButton(specialization));
-                        log.info(getUserName(specialization).getText() + " --> " + specialization + " -- has been added");
-                    } catch (Exception er) {
-                        log.error("The contact '" + getUserName(specialization).getText() + "' hasn't been added \nor 'Pending button hasn't been shown'");
-                    }
+                    clickJS(getButtonBySpecialization(specialization));
+                    waitForElementClickable(pendingButton(specialization));
+                    log.info(getUserName(specialization).getText() + " --> " + specialization + " -- has been added");
+                } catch (Exception er) {
+                    log.error("The contact '" + getUserName(specialization).getText() + "' hasn't been added \nor 'Pending button hasn't been shown'");
                 }
             }
         }
-//        System.out.println(contactsForClick);
+
         if (contactsForClick.size() == 0) {
             log.warn("There is no any contacts for adding");
         } else {

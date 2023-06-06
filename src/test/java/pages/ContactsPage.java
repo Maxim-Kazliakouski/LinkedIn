@@ -42,10 +42,13 @@ public class ContactsPage extends BasePage {
     }
 
     public boolean ghostPerson(String userName) {
+        boolean result = false;
         try {
             System.out.println("!!!NOT GHOST PERSON --> CAN BE ADDED!!!");
-            getWorkStatus(userName);
-            return true;
+            if (!getWorkStatus(userName).contains("is open to work")) {
+                result = true;
+            }
+            return result;
         } catch (Exception er) {
             System.out.println("---> GHOST PERSON <--- CAN'T BE ADDED!!!");
             By.xpath(format("//span[text()='%s']//..//span[@class='discover-person-card__name t-16 t-black t-bold']//..//div[contains(@class,'ghost-entity')]", userName));
@@ -87,8 +90,8 @@ public class ContactsPage extends BasePage {
                         contactsForClick.add(specialization);
                         try {
 //                        log.info(getWorkStatus(getUserName(specialization).getText()));
-                            clickJS(getButtonBySpecialization(specialization));
-                            waitForElementClickable(pendingButton(specialization));
+//                            clickJS(getButtonBySpecialization(specialization));
+//                            waitForElementClickable(pendingButton(specialization));
                             log.info(getUserName(specialization).getText() + " --> " + specialization + " -- has been added");
                         } catch (Exception er) {
                             log.error("The contact '" + getUserName(specialization).getText() + "' hasn't been added \nor 'Pending button hasn't been shown'");

@@ -89,7 +89,7 @@ public class ContactsPage extends BasePage {
 //                        && !getWorkStatus(specialization).contains("is open to work"))
                         contactsForClick.add(specialization);
                         try {
-//                        log.info(getWorkStatus(getUserName(specialization).getText()));
+                        log.info(getWorkStatus(getUserName(specialization).getText()));
 //                            clickJS(getButtonBySpecialization(specialization));
 //                            waitForElementClickable(pendingButton(specialization));
                             log.info(getUserName(specialization).getText() + " --> " + specialization + " -- has been added");

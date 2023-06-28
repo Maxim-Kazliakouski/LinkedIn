@@ -13,12 +13,17 @@ public class CreatedConnectionsTest extends BaseWithStepsTest {
                 .login(getUsername(), getPassword());
         homePageSteps
                 .goToContactsPage();
-        contactsPageSteps.createConnection(
-                "Automation", "automation", "AQA", "aqa",
-                "qa", "QA", "Qa", "Test Engineer", "PM", "Project Manager",
-                "hr", "HR", "Manager", "resource", "Resource", "UI/UX",
-                "Recruiter", "recruiter", "testing"
-        );
+//        contactsPageSteps.createConnection(
+//                "Automation", "automation", "AQA", "aqa",
+//                "qa", "QA", "Qa", "Test Engineer", "PM", "Project Manager",
+//                "hr", "HR", "Manager", "resource", "Resource", "UI/UX",
+//                "Recruiter", "recruiter", "testing"
+//        );
+        System.out.println("!!!!!!");
+        System.out.println(System.getProperty("specialitiesForAdding"));
+        System.out.println("!!!!!!");
+        contactsPageSteps
+                .createConnection(System.getProperty("specialitiesForAdding"));
     }
 }
 

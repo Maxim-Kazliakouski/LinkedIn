@@ -100,11 +100,15 @@ public class ContactsPage extends BasePage {
                 }
             }
 //        System.out.println(contactsForClick);
+//        Integer amountOfContacts;
             if (contactsForClick.size() == 0) {
                 log.warn("There is no any contacts for adding");
+                Integer amountOfContactsHasBeenAdded = 0;
             } else {
                 log.info(format("The %s contact(s) has been added", contactsForClick.size()));
+                Integer amountOfContactsHasBeenAdded = contactsForClick.size();
                 log.info(format("Amount of connections in given moment: %s", connectionsAmount()));
+                String wholeAmountOfConnections = connectionsAmount();
             }
         }
     }

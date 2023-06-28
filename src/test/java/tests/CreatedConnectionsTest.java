@@ -25,7 +25,7 @@ public class CreatedConnectionsTest extends BaseWithStepsTest {
 //        System.out.println(TestPropertyReader.getProperty("max_list"));
 //        String[] params = TestPropertyReader.getProperty("max_list").split(",");
 
-        String[] params = System.getProperty("specialitiesForAdding").split(",");
+        String[] params = System.getProperty("specialitiesForAdding").split(", ");
 
         contactsPageSteps
                 .createConnection(params);

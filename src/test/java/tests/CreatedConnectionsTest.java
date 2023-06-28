@@ -1,5 +1,7 @@
 package tests;
 
+import com.sun.javafx.runtime.SystemProperties;
+import config.TestPropertyReader;
 import lombok.extern.log4j.Log4j2;
 import org.testng.annotations.Test;
 import tests.base.BaseWithStepsTest;
@@ -19,11 +21,14 @@ public class CreatedConnectionsTest extends BaseWithStepsTest {
 //                "hr", "HR", "Manager", "resource", "Resource", "UI/UX",
 //                "Recruiter", "recruiter", "testing"
 //        );
-        System.out.println("!!!!!!");
-        System.out.println(System.getProperty("specialitiesForAdding"));
-        System.out.println("!!!!!!");
+
+//        System.out.println(TestPropertyReader.getProperty("max_list"));
+//        String[] params = TestPropertyReader.getProperty("max_list").split(",");
+
+        String[] params = System.getProperty("specialitiesForAdding").split(",");
+
         contactsPageSteps
-                .createConnection(System.getProperty("specialitiesForAdding"));
+                .createConnection(params);
+//                .createConnection("Automation", "automation", "AQA", "aqa", "qa", "QA", "Qa", "Test Engineer", "PM", "Project Manager", "hr", "HR", "Manager", "resource", "Resource", "UI/UX", "Recruiter", "recruiter", "testing");
     }
 }
-

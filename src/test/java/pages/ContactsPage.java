@@ -87,29 +87,25 @@ public class ContactsPage extends BasePage {
                         && !specialization.contains("junior")
                         && ghostPerson(specialization)) {
 //                        && !getWorkStatus(specialization).contains("is open to work"))
-                        contactsForClick.add(specialization);
-                        try {
+                    contactsForClick.add(specialization);
+                    try {
 //                        log.info(getWorkStatus(getUserName(specialization).getText()));
-                            clickJS(getButtonBySpecialization(specialization));
-                            waitForElementClickable(pendingButton(specialization));
-                            log.info(getUserName(specialization).getText() + " --> " + specialization + " -- has been added");
-                        } catch (Exception er) {
-                            log.error("The contact '" + getUserName(specialization).getText() + "' hasn't been added \nor 'Pending button hasn't been shown'");
-                        }
+                        clickJS(getButtonBySpecialization(specialization));
+                        waitForElementClickable(pendingButton(specialization));
+                        log.info(getUserName(specialization).getText() + " --> " + specialization + " -- has been added");
+                    } catch (Exception er) {
+                        log.error("The contact '" + getUserName(specialization).getText() + "' hasn't been added \nor 'Pending button hasn't been shown'");
                     }
                 }
             }
+        }
 //        System.out.println(contactsForClick);
-//        Integer amountOfContacts;
-            if (contactsForClick.size() == 0) {
-                log.warn("There is no any contacts for adding");
-                Integer amountOfContactsHasBeenAdded = 0;
-            } else {
-                log.info(format("The %s contact(s) has been added", contactsForClick.size()));
-                Integer amountOfContactsHasBeenAdded = contactsForClick.size();
-                log.info(format("Amount of connections in given moment: %s", connectionsAmount()));
-                String wholeAmountOfConnections = connectionsAmount();
-            }
+        if (contactsForClick.size() == 0) {
+            log.warn("There is no any contacts for adding");
+        } else {
+            log.info(format("The %s contact(s) has been added", contactsForClick.size()));
+            log.info(format("Amount of connections in given moment: %s", connectionsAmount()));
         }
     }
+}
 //}

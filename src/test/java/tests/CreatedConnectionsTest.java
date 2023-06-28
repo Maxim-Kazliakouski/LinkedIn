@@ -15,20 +15,22 @@ public class CreatedConnectionsTest extends BaseWithStepsTest {
                 .login(getUsername(), getPassword());
         homePageSteps
                 .goToContactsPage();
+        /*
+        old realization with list of specialities
+        */
 //        contactsPageSteps.createConnection(
 //                "Automation", "automation", "AQA", "aqa",
 //                "qa", "QA", "Qa", "Test Engineer", "PM", "Project Manager",
 //                "hr", "HR", "Manager", "resource", "Resource", "UI/UX",
 //                "Recruiter", "recruiter", "testing"
 //        );
+//                .createConnection("Automation", "automation", "AQA", "aqa", "qa", "QA", "Qa", "Test Engineer", "PM", "Project Manager", "hr", "HR", "Manager", "resource", "Resource", "UI/UX", "Recruiter", "recruiter", "testing");
 
-//        System.out.println(TestPropertyReader.getProperty("max_list"));
-//        String[] params = TestPropertyReader.getProperty("max_list").split(",");
-
+        /*
+        new realization with list of specialities from Jenkins
+        */
         String[] params = System.getProperty("specialitiesForAdding").split(", ");
-
         contactsPageSteps
                 .createConnection(params);
-//                .createConnection("Automation", "automation", "AQA", "aqa", "qa", "QA", "Qa", "Test Engineer", "PM", "Project Manager", "hr", "HR", "Manager", "resource", "Resource", "UI/UX", "Recruiter", "recruiter", "testing");
     }
 }

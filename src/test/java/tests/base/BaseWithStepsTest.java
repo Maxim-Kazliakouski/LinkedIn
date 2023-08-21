@@ -2,8 +2,8 @@ package tests.base;
 
 import com.github.javafaker.Faker;
 import config.TestPropertyReader;
-import io.github.bonigarcia.wdm.WebDriverManager;
-import org.apache.commons.io.FileUtils;
+//import io.github.bonigarcia.wdm.WebDriverManager;
+//import org.apache.commons.io.FileUtils;
 import org.openqa.selenium.OutputType;
 import org.openqa.selenium.TakesScreenshot;
 import org.openqa.selenium.WebDriver;
@@ -50,12 +50,17 @@ public abstract class BaseWithStepsTest {
                       @Optional("false") String headlessMode,
                       @Optional("true") String isLogin) {
         if (browserType.equals("chrome")) {
-            WebDriverManager.chromedriver().setup();
+            System.setProperty("webdriver.chrome.driver", "C:\\Windows\\System32\\chromedriver.exe");
+//            WebDriverManager.chromedriver().driverVersion("116.0.5845.96").setup();
+//            WebDriverManager.chromedriver().setup();
             ChromeOptions options = new ChromeOptions();
             options.addArguments("window-size=1920x1080");
             options.addArguments("--disable-notifications");
             options.addArguments("--remote-allow-origins=*");
+            options.addArguments("--no-sandbox");
+            options.addArguments("--disable-dev-shm-usage");
             options.setHeadless(headlessMode.equals("false"));
+
             browser = new ChromeDriver(options);
             browser.manage().deleteAllCookies();
 //            username = TestPropertyReader.getProperty("username");
@@ -64,7 +69,7 @@ public abstract class BaseWithStepsTest {
             username = System.getProperty("usernameChrome");
             password = System.getProperty("passwordChrome");
         } else if (browserType.equals("firefox")) {
-            WebDriverManager.firefoxdriver().setup();
+//            WebDriverManager.firefoxdriver().setup();
             FirefoxOptions options = new FirefoxOptions();
             options.addArguments("window-size=1920х1080");
             options.addArguments("--disable-notifications");
@@ -105,6 +110,6 @@ public abstract class BaseWithStepsTest {
         DateFormat dateFormat = new SimpleDateFormat("dd-MM-yyyy::h-m-s");
         Date date = new Date();
         File DestFile = new File("src/test/java/tests/screenshoots/image:" + dateFormat.format(date) + ".jpg");
-        FileUtils.copyFile(SrcFile, DestFile);
+//        FileUtils.copyFile(SrcFile, DestFile);
     }
 }

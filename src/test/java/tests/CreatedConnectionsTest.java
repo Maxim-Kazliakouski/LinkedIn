@@ -1,7 +1,5 @@
 package tests;
 
-import com.sun.javafx.runtime.SystemProperties;
-import config.TestPropertyReader;
 import lombok.extern.log4j.Log4j2;
 import org.testng.annotations.Test;
 import tests.base.BaseWithStepsTest;

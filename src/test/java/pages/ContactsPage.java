@@ -6,7 +6,10 @@ import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 
-import java.util.*;
+import java.util.ArrayList;
+import java.util.HashSet;
+import java.util.List;
+import java.util.Set;
 
 import static java.lang.String.format;
 
@@ -16,7 +19,9 @@ public class ContactsPage extends BasePage {
     @FindBy(xpath = "//section[@class='mn-community-summary']/div/h2")
     WebElement titleContactPage;
     @FindBy(xpath = "//div[@class='mn-community-summary__entity-info'][text()='Connections']//following-sibling::div[@class='pl3']")
-    WebElement amountOfConnections;
+    WebElement amountOfConnectionsMax;
+    @FindBy(xpath = "//div[@class='mn-community-summary__entity-info'][text()='Контакты']//following-sibling::div[@class='pl3']")
+    WebElement amountOfConnectionsNatali;
     private final String CONTACT_PAGE_URL = BASE_URL + "mynetwork/";
 
     public ContactsPage(WebDriver browser) {
@@ -65,7 +70,10 @@ public class ContactsPage extends BasePage {
     }
 
     public String connectionsAmount() {
-        return amountOfConnections.getText();
+        if (System.getProperty("usernameChrome").contains("nkazliakouskaya@gmail.com")){
+            return amountOfConnectionsNatali.getText();
+        }
+        else return amountOfConnectionsMax.getText();
     }
 
     public void createConnectionAndGetAmountOfConnections(String... searchingSpecialists) {

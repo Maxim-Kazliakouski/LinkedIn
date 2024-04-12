@@ -17,7 +17,9 @@ import static java.lang.String.format;
 public class ContactsPage extends BasePage {
     private final By ALL_CONTACTS = By.xpath("//span[@class='discover-person-card__occupation t-14 t-black--light t-normal']");
     @FindBy(xpath = "//section[@class='mn-community-summary']/div/h2")
-    WebElement titleContactPage;
+    WebElement titleContactPageMax;
+    @FindBy(xpath = "//section[@class='mn-community-summary']/div")
+    WebElement titleContactPageNatali;
     @FindBy(xpath = "//div[@class='mn-community-summary__entity-info'][text()='Connections']//following-sibling::div[@class='pl3']")
     WebElement amountOfConnectionsMax;
     @FindBy(xpath = "//div[@class='mn-community-summary__entity-info'][text()='Контакты']//following-sibling::div[@class='pl3']")
@@ -34,7 +36,10 @@ public class ContactsPage extends BasePage {
 
     @Override
     public boolean isOpened() {
-        return waitForVisibility(titleContactPage);
+        if (System.getProperty("usernameChrome").contains("nkazliakouskaya@gmail.com")){
+            return waitForVisibility(titleContactPageNatali);
+        }
+        else return waitForVisibility(titleContactPageMax);
     }
 
     public WebElement getUserName(String spec) {

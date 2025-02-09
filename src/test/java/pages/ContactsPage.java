@@ -103,8 +103,8 @@ public class ContactsPage extends BasePage {
                     contactsForClick.add(specialization);
                     try {
 //                        log.info(getWorkStatus(getUserName(specialization).getText()));
-//                        clickJS(getButtonBySpecialization(specialization));
-//                        waitForElementClickable(pendingButton(specialization));
+                        clickJS(getButtonBySpecialization(specialization));
+                        waitForElementClickable(pendingButton(specialization));
                         log.info(getUserName(specialization).getText() + " --> " + specialization + " -- has been added");
                     } catch (Exception er) {
                         log.error("The contact '" + getUserName(specialization).getText() + "' hasn't been added \nor 'Pending button hasn't been shown'");

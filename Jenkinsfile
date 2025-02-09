@@ -70,8 +70,7 @@ pipeline {
              echo "Build Result: ${currentBuild.currentResult}"
              echo "Job Name: ${env.JOB_NAME}"
              echo "Build URL: ${env.BUILD_URL}"
-            emailext
-                to: 'maxim.kazliakouski@gmail.com',
+            emailext to: 'maxim.kazliakouski@gmail.com',
                 subject: "Jenkins build === ${currentBuild.currentResult} === ${env.JOB_NAME}",
                 body: """${currentBuild.currentResult}: Job ${env.JOB_NAME}
                                          More Info about build can be found here: ${env.BUILD_URL}"""

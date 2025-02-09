@@ -70,8 +70,8 @@ pipeline {
             emailext (
                 to: 'maxim.kazliakouski@gmail.com',
                 subject: "Jenkins build === ${currentBuild.currentResult} === ${env.JOB_NAME}",
-                body: '${currentBuild.currentResult}: Job ${env.JOB_NAME}
-                         More Info about build can be found here: ${env.BUILD_URL}'
+                body: "${currentBuild.currentResult}: Job ${env.JOB_NAME}
+                         More Info about build can be found here: ${env.BUILD_URL}"
             )
         }
         success {

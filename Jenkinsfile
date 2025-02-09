@@ -67,6 +67,9 @@ pipeline {
 //                     junit '**/target/surefire-reports/TEST-*.xml'
         always {
             echo 'Sending email...'
+             echo "Build Result: ${currentBuild.currentResult}"
+             echo "Job Name: ${env.JOB_NAME}"
+             echo "Build URL: ${env.BUILD_URL}"
             emailext (
                 to: 'maxim.kazliakouski@gmail.com',
                 subject: "Jenkins build === ${currentBuild.currentResult} === ${env.JOB_NAME}",

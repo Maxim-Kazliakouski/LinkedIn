@@ -33,15 +33,12 @@ public class LoginPage extends BasePage {
         return waitForVisibility(loginButton);
     }
 
-    public void login(String username, String password) throws IOException {
-        baseWithStepsTest.makeScreenShoot();
+    public void login(String username, String password) {
         USERNAME.sendKeys(username);
         waitForVisibility(PASSWORD);
         PASSWORD.sendKeys(password);
-        baseWithStepsTest.makeScreenShoot();
         waitForVisibility(loginButton);
         loginButton.click();
-        baseWithStepsTest.makeScreenShoot();
     }
 }
 

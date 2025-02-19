@@ -34,9 +34,11 @@ public class LoginPage extends BasePage {
     }
 
     public void login(String username, String password) throws IOException {
+        baseWithStepsTest.makeScreenShoot();
         USERNAME.sendKeys(username);
         waitForVisibility(PASSWORD);
         PASSWORD.sendKeys(password);
+        baseWithStepsTest.makeScreenShoot();
         waitForVisibility(loginButton);
         loginButton.click();
         baseWithStepsTest.makeScreenShoot();

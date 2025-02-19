@@ -24,6 +24,7 @@ import java.text.DateFormat;
 import java.text.SimpleDateFormat;
 import java.time.Duration;
 import java.util.Date;
+import org.apache.commons.io.FileUtils;
 
 @Listeners(TestListener.class)
 public abstract class BaseWithStepsTest {
@@ -104,12 +105,27 @@ public abstract class BaseWithStepsTest {
         }
     }
 
+//    public void takeSreenshoot() {
+//        WebDriver driver = new ChromeDriver();
+//        TakesScreenshot screenshot = (TakesScreenshot) driver;
+//        File srcFile = screenshot.getScreenshotAs(OutputType.FILE);
+//        File destFile = new File("path/to/save/screenshot.png");
+//
+//        try {
+//            // Копируем скриншот в указанное место
+//            FileUtils.copyFile(srcFile, destFile);
+//            System.out.println("Скриншот сохранен в: " + destFile.getAbsolutePath());
+//        } catch (IOException e) {
+//            e.printStackTrace();
+//        }
+//    }
+
     public void makeScreenShoot() throws IOException {
         TakesScreenshot scrShot = ((TakesScreenshot) browser);
         File SrcFile = scrShot.getScreenshotAs(OutputType.FILE);
         DateFormat dateFormat = new SimpleDateFormat("dd-MM-yyyy::h-m-s");
         Date date = new Date();
         File DestFile = new File("src/test/java/tests/screenshoots/image:" + dateFormat.format(date) + ".jpg");
-//        FileUtils.copyFile(SrcFile, DestFile);
+        FileUtils.copyFile(SrcFile, DestFile);
     }
 }

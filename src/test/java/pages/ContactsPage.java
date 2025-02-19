@@ -5,6 +5,8 @@ import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 import java.util.ArrayList;
 import java.util.HashSet;
@@ -15,6 +17,7 @@ import static java.lang.String.format;
 
 @Log4j2
 public class ContactsPage extends BasePage {
+    private static final Logger log = LoggerFactory.getLogger(ContactsPage.class);
     private final By ALL_CONTACTS = By.xpath("//span[@class='discover-person-card__occupation t-14 t-black--light t-normal']");
     @FindBy(xpath = "//section[@class='mn-community-summary']/div/h2")
     WebElement titleContactPageMax;
@@ -36,10 +39,9 @@ public class ContactsPage extends BasePage {
 
     @Override
     public boolean isOpened() {
-        if (System.getProperty("usernameChrome").contains("nkazliakouskaya@gmail.com")){
+        if (System.getProperty("usernameChrome").contains("nkazliakouskaya@gmail.com")) {
             return waitForVisibility(titleContactPageNatali);
-        }
-        else return waitForVisibility(titleContactPageMax);
+        } else return waitForVisibility(titleContactPageMax);
     }
 
     public WebElement getUserName(String spec) {
@@ -75,10 +77,9 @@ public class ContactsPage extends BasePage {
     }
 
     public String connectionsAmount() {
-        if (System.getProperty("usernameChrome").contains("nkazliakouskaya@gmail.com")){
+        if (System.getProperty("usernameChrome").contains("nkazliakouskaya@gmail.com")) {
             return amountOfConnectionsNatali.getText();
-        }
-        else return amountOfConnectionsMax.getText();
+        } else return amountOfConnectionsMax.getText();
     }
 
     public void createConnectionAndGetAmountOfConnections(String... searchingSpecialists) {

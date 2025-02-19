@@ -6,6 +6,8 @@ import org.openqa.selenium.WebDriver;
 import pages.HomePage;
 import pages.LoginPage;
 
+import java.io.IOException;
+
 import static org.testng.Assert.assertTrue;
 @Log4j2
 public class LoginPageSteps {
@@ -35,7 +37,7 @@ public class LoginPageSteps {
     }
 
     @Step("Login")
-    public void login(String username, String password){
+    public void login(String username, String password) throws IOException {
         log.info("Trying to login");
         loginPage.login(username, password);
         assertTrue(homePage.isOpened(), "Home page hadn't opened!");

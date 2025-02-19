@@ -4,10 +4,12 @@ import lombok.extern.log4j.Log4j2;
 import org.testng.annotations.Test;
 import tests.base.BaseWithStepsTest;
 
+import java.io.IOException;
+
 @Log4j2
 public class CreatedConnectionsTest extends BaseWithStepsTest {
     @Test
-    public void createNewConnections() {
+    public void createNewConnections() throws IOException {
         loginPageSteps
                 .goToLoginPage()
                 .login(getUsername(), getPassword());

@@ -1,9 +1,8 @@
 package tests.base;
 
-import com.github.javafaker.Faker;
 import config.TestPropertyReader;
-//import io.github.bonigarcia.wdm.WebDriverManager;
-//import org.apache.commons.io.FileUtils;
+import lombok.Getter;
+import org.apache.commons.io.FileUtils;
 import org.openqa.selenium.OutputType;
 import org.openqa.selenium.TakesScreenshot;
 import org.openqa.selenium.WebDriver;
@@ -13,7 +12,6 @@ import org.openqa.selenium.firefox.FirefoxDriver;
 import org.openqa.selenium.firefox.FirefoxOptions;
 import org.testng.ITestContext;
 import org.testng.annotations.*;
-
 import steps.ContactsPageSteps;
 import steps.HomePageSteps;
 import steps.LoginPageSteps;
@@ -24,25 +22,16 @@ import java.text.DateFormat;
 import java.text.SimpleDateFormat;
 import java.time.Duration;
 import java.util.Date;
-import org.apache.commons.io.FileUtils;
 
+@Getter
 @Listeners(TestListener.class)
 public abstract class BaseWithStepsTest {
     public WebDriver browser;
-    public Faker faker;
+    //    public Faker faker;
     public LoginPageSteps loginPageSteps;
     public HomePageSteps homePageSteps;
     public ContactsPageSteps contactsPageSteps;
     private String username;
-
-    public String getUsername() {
-        return username;
-    }
-
-    public String getPassword() {
-        return password;
-    }
-
     private String password;
 
     @Parameters({"browserType", "headlessMode", "isLogin"})
@@ -52,31 +41,28 @@ public abstract class BaseWithStepsTest {
                       @Optional("true") String isLogin) {
         if (browserType.equals("chrome")) {
             System.setProperty("webdriver.chrome.driver", "C:\\Windows\\System32\\chromedriver.exe");
-//            WebDriverManager.chromedriver().driverVersion("116.0.5845.96").setup();
-//            WebDriverManager.chromedriver().setup();
             ChromeOptions options = new ChromeOptions();
             options.addArguments("window-size=1920x1080");
             options.addArguments("--disable-notifications");
             options.addArguments("--remote-allow-origins=*");
             options.addArguments("--no-sandbox");
             options.addArguments("--disable-dev-shm-usage");
-            options.setHeadless(headlessMode.equals("false"));
-
+            if (headlessMode.equals("true")) {
+                options.addArguments("--headless=new");
+            }
             browser = new ChromeDriver(options);
             browser.manage().deleteAllCookies();
-//            username = TestPropertyReader.getProperty("username");
-//            password = TestPropertyReader.getProperty("password");
 //            properties for getting data from command line
             username = System.getProperty("usernameChrome");
             password = System.getProperty("passwordChrome");
         } else if (browserType.equals("firefox")) {
-//            WebDriverManager.firefoxdriver().setup();
             FirefoxOptions options = new FirefoxOptions();
             options.addArguments("window-size=1920х1080");
             options.addArguments("--disable-notifications");
-//            options.addArguments("--remote-allow-origins=*");
             options.addPreference("dom.webnotifications.enabled", false);
-            options.setHeadless(headlessMode.equals("true"));
+            if (headlessMode.equals("true")) {
+                options.addArguments("--headless=new");
+            }
             browser = new FirefoxDriver(options);
             browser.manage().deleteAllCookies();
             username = TestPropertyReader.getProperty("username");
@@ -86,7 +72,6 @@ public abstract class BaseWithStepsTest {
         }
         // для связки с скриншотами в TestListener
         testContext.setAttribute("browser", browser);
-        faker = new Faker();
         loginPageSteps = new LoginPageSteps(browser);
         homePageSteps = new HomePageSteps(browser);
         contactsPageSteps = new ContactsPageSteps(browser);

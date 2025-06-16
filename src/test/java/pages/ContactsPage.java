@@ -107,7 +107,7 @@ public class ContactsPage extends BasePage {
 
                 // Ищем кнопку и кликаем
                 WebElement inviteButton = browser.findElement(inviteButtonLocator);
-//                inviteButton.click();
+                inviteButton.click();
 
                 log.info("Отправлено приглашение для: {}", name);
 

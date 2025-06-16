@@ -1,17 +1,14 @@
 package steps;
 
 import io.qameta.allure.Step;
-import lombok.extern.log4j.Log4j2;
 import org.openqa.selenium.WebDriver;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import pages.HomePage;
 import pages.LoginPage;
 
-import java.io.IOException;
-
 import static org.testng.Assert.assertTrue;
-@Log4j2
+
 public class LoginPageSteps {
 
     private static final Logger log = LoggerFactory.getLogger(LoginPageSteps.class);
@@ -40,7 +37,7 @@ public class LoginPageSteps {
     }
 
     @Step("Login")
-    public void login(String username, String password) throws IOException {
+    public void login(String username, String password) {
         log.info("Trying to login");
         loginPage.login(username, password);
         assertTrue(homePage.isOpened(), "Home page hadn't opened!");

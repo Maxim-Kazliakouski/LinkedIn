@@ -18,4 +18,10 @@ public class ContactsPageSteps {
     public void createConnection(String...params){
         contactsPage.createConnectionAndGetAmountOfConnections(params);
     }
+
+    @Step("Scroll to the bottom of the page")
+    public ContactsPageSteps scrollToBottom() throws InterruptedException {
+        contactsPage.scrollToBottomOfThePage();
+        return this;
+    }
 }

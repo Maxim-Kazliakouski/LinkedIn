@@ -5,9 +5,8 @@ import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 
 public class HomePage extends BasePage {
-    @FindBy(xpath = "//div[@class='t-16 t-black t-bold']")
+    @FindBy(xpath = "//h3[text()='Maxim Kazliakouski']")
     WebElement userNameAtHomePage;
-    private final String CONTACT_PAGE_URL = BASE_URL + "mynetwork/";
 
     public HomePage(WebDriver browser) {
         super(browser);
@@ -19,6 +18,7 @@ public class HomePage extends BasePage {
     }
 
     public void goToContactsPage(){
+        String CONTACT_PAGE_URL = BASE_URL + "mynetwork/";
         browser.get(CONTACT_PAGE_URL);
     }
 }

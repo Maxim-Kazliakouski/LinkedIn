@@ -1,0 +1,27 @@
+Configuration:
+  status: INFO
+  Properties:
+    Property:
+      - name: "Pattern-For-Console"
+        value: "[LOGGING][%highlight{%level}] ---> %d{yyyy-MM-dd HH:mm:ss.SSS} %highlight{%M(%L)}: %n%msg%n"
+
+  Appenders:
+    Console:
+      name: console_Appender
+      target: SYSTEM_OUT
+      PatternLayout:
+        Pattern: ${Pattern-For-Console}
+
+  Loggers:
+    logger:
+      - name: consoleLogger
+        level: info
+        additivity: true
+        AppenderRef:
+          ref: console_Appender
+
+    Root:
+      level: ALL
+      AppenderRef:
+        - ref: console_Appender
+          level: ALL

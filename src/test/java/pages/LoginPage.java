@@ -35,8 +35,10 @@ public class LoginPage extends BasePage {
 
     public void login(String username, String password) {
         USERNAME.sendKeys(username);
+//        USERNAME.sendKeys("maxim.kazliakouski@gmail.com");
         waitForVisibility(PASSWORD);
         PASSWORD.sendKeys(password);
+//        PASSWORD.sendKeys("M@ximka05091991");
         waitForVisibility(loginButton);
         loginButton.click();
     }
